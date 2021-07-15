@@ -481,3 +481,33 @@ export const onDeleteMessage = /* GraphQL */ `
     }
   }
 `;
+export const onCreateQueue = /* GraphQL */ `
+  subscription OnCreateQueue {
+    onCreateQueue {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateQueue = /* GraphQL */ `
+  subscription OnUpdateQueue {
+    onUpdateQueue {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteQueue = /* GraphQL */ `
+  subscription OnDeleteQueue {
+    onDeleteQueue {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;

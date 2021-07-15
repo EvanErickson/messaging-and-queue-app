@@ -217,6 +217,35 @@ export type DeleteMessageInput = {
   id: string,
 };
 
+export type CreateQueueInput = {
+  id?: string | null,
+  name: string,
+};
+
+export type ModelQueueConditionInput = {
+  name?: ModelStringInput | null,
+  and?: Array< ModelQueueConditionInput | null > | null,
+  or?: Array< ModelQueueConditionInput | null > | null,
+  not?: ModelQueueConditionInput | null,
+};
+
+export type Queue = {
+  __typename: "Queue",
+  id: string,
+  name: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateQueueInput = {
+  id: string,
+  name?: string | null,
+};
+
+export type DeleteQueueInput = {
+  id: string,
+};
+
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
@@ -265,6 +294,20 @@ export type ModelMessageFilterInput = {
   and?: Array< ModelMessageFilterInput | null > | null,
   or?: Array< ModelMessageFilterInput | null > | null,
   not?: ModelMessageFilterInput | null,
+};
+
+export type ModelQueueFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  and?: Array< ModelQueueFilterInput | null > | null,
+  or?: Array< ModelQueueFilterInput | null > | null,
+  not?: ModelQueueFilterInput | null,
+};
+
+export type ModelQueueConnection = {
+  __typename: "ModelQueueConnection",
+  items?:  Array<Queue | null > | null,
+  nextToken?: string | null,
 };
 
 export type ModelStringKeyConditionInput = {
@@ -886,6 +929,51 @@ export type DeleteMessageMutation = {
   } | null,
 };
 
+export type CreateQueueMutationVariables = {
+  input: CreateQueueInput,
+  condition?: ModelQueueConditionInput | null,
+};
+
+export type CreateQueueMutation = {
+  createQueue?:  {
+    __typename: "Queue",
+    id: string,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateQueueMutationVariables = {
+  input: UpdateQueueInput,
+  condition?: ModelQueueConditionInput | null,
+};
+
+export type UpdateQueueMutation = {
+  updateQueue?:  {
+    __typename: "Queue",
+    id: string,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteQueueMutationVariables = {
+  input: DeleteQueueInput,
+  condition?: ModelQueueConditionInput | null,
+};
+
+export type DeleteQueueMutation = {
+  deleteQueue?:  {
+    __typename: "Queue",
+    id: string,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetUserQueryVariables = {
   id: string,
 };
@@ -1215,6 +1303,40 @@ export type ListMessagesQuery = {
         createdAt: string,
         updatedAt: string,
       } | null,
+      updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetQueueQueryVariables = {
+  id: string,
+};
+
+export type GetQueueQuery = {
+  getQueue?:  {
+    __typename: "Queue",
+    id: string,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListQueuesQueryVariables = {
+  filter?: ModelQueueFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListQueuesQuery = {
+  listQueues?:  {
+    __typename: "ModelQueueConnection",
+    items?:  Array< {
+      __typename: "Queue",
+      id: string,
+      name: string,
+      createdAt: string,
       updatedAt: string,
     } | null > | null,
     nextToken?: string | null,
@@ -1801,6 +1923,36 @@ export type OnDeleteMessageSubscription = {
       createdAt: string,
       updatedAt: string,
     } | null,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateQueueSubscription = {
+  onCreateQueue?:  {
+    __typename: "Queue",
+    id: string,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateQueueSubscription = {
+  onUpdateQueue?:  {
+    __typename: "Queue",
+    id: string,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteQueueSubscription = {
+  onDeleteQueue?:  {
+    __typename: "Queue",
+    id: string,
+    name: string,
+    createdAt: string,
     updatedAt: string,
   } | null,
 };

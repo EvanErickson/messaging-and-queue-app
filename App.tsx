@@ -13,6 +13,7 @@ import {
 } from 'aws-amplify';
 import { getUser } from './src/graphql/queries';
 import { createUser } from './src/graphql/mutations';
+import { createQueue } from './src/graphql/mutations';
 
 import { withAuthenticator } from 'aws-amplify-react-native'
 import Amplify from 'aws-amplify'
@@ -34,10 +35,17 @@ function App() {
     return randomImages[Math.floor(Math.random() * randomImages.length)];
   }
 
+  async function addToQueue(user){
+    API.graphql(graphqlOperation(createQueue, {
+      user: user,
+      // global current customer from scanning
+    }))};
+
   // run this snippet only when App is first mounted
   useEffect( () => {
     const fetchUser = async () => {
       const userInfo = await Auth.currentAuthenticatedUser({ bypassCache: true });
+      console.log('userinfo', userInfo);
 
       if (userInfo) {
         const userData = await API.graphql(
@@ -49,22 +57,20 @@ function App() {
 
         if (userData.data.getUser) {
           console.log("User is already registered in database");
+          await API.graphql(graphqlOperation(createQueue, {input: {name: userData.data.getUser.name}}));
+          console.log(userData.data.getUser.name);
           return;
         }
 
         const newUser = {
           id: userInfo.attributes.sub,
-          name: userInfo.username,
+          name: userInfo.name,
           imageUri: getRandomImage(),
           status: 'Hey, I am using WhatsApp',
         }
 
-        await API.graphql(
-          graphqlOperation(
-            createUser,
-            { input: newUser }
-          )
-        )
+
+        await API.graphql(graphqlOperation(createUser, { input: newUser }))
       }
     }
 
@@ -83,4 +89,5 @@ function App() {
   }
 }
 
-export default withAuthenticator(App)
+
+export default withAuthenticator(App);

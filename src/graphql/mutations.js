@@ -517,3 +517,42 @@ export const deleteMessage = /* GraphQL */ `
     }
   }
 `;
+export const createQueue = /* GraphQL */ `
+  mutation CreateQueue(
+    $input: CreateQueueInput!
+    $condition: ModelQueueConditionInput
+  ) {
+    createQueue(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateQueue = /* GraphQL */ `
+  mutation UpdateQueue(
+    $input: UpdateQueueInput!
+    $condition: ModelQueueConditionInput
+  ) {
+    updateQueue(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteQueue = /* GraphQL */ `
+  mutation DeleteQueue(
+    $input: DeleteQueueInput!
+    $condition: ModelQueueConditionInput
+  ) {
+    deleteQueue(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;

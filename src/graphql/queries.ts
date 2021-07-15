@@ -280,6 +280,33 @@ export const listMessages = /* GraphQL */ `
     }
   }
 `;
+export const getQueue = /* GraphQL */ `
+  query GetQueue($id: ID!) {
+    getQueue(id: $id) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listQueues = /* GraphQL */ `
+  query ListQueues(
+    $filter: ModelQueueFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQueues(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const messagesByChatRoom = /* GraphQL */ `
   query MessagesByChatRoom(
     $chatRoomID: ID

@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Amplify, { Auth, API } from 'aws-amplify'
+import Amplify, { Auth, API, graphqlOperation } from 'aws-amplify'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { useEffect } from 'react';
+import * as queries from '../src/graphql/queries';
+import { ListQueuesQuery } from '../src/API';
 
 //amplify signout function
 
@@ -14,6 +17,16 @@ async function signOut() {
         console.log('error signing out: ', error);
     }
 }
+
+function queueQuery (){
+  //  let res = API.graphql(graphqlOperation({ query: queries.listQueues }));
+   const res =  API.graphql(graphqlOperation(queries.listQueues, {name: 'test2'})).then(data => {
+     console.log(data)
+   }).catch(error => {
+     console.log(error)
+   });
+}
+queueQuery();
 
 export default function TabTwoScreen() {
   return (

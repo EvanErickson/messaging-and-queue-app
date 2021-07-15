@@ -40,5 +40,7 @@ type Message
   chatRoom: ChatRoom @connection(fields: ["chatRoomID"])
 }
 
-
-
+type Queue @model {
+  id: ID!
+  name: String!
+}
