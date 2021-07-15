@@ -6,7 +6,6 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { useEffect } from 'react';
 import * as queries from '../src/graphql/queries';
-import { ListQueuesQuery } from '../src/API';
 
 //amplify signout function
 
@@ -19,9 +18,14 @@ async function signOut() {
 }
 
 function queueQuery (){
-  //  let res = API.graphql(graphqlOperation({ query: queries.listQueues }));
-   const res =  API.graphql(graphqlOperation(queries.listQueues, {name: 'test2'})).then(data => {
+  //  let res = API.graphql(graphqlOperation({ query: queries.istQueues }));
+   const res =  API.graphql(graphqlOperation(queries.listQueues)).then(data => {
      console.log(data)
+   }).catch(error => {
+     console.log(error)
+   });
+   const res2 =  API.graphql(graphqlOperation(queries.getQueue, { id: 'ac9cf051-1d1e-426e-ae2b-d95d2786e37c' })).then(data => {
+    console.log(data)
    }).catch(error => {
      console.log(error)
    });
