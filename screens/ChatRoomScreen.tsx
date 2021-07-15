@@ -13,7 +13,6 @@ import { onCreateMessage } from '../src/graphql/subscriptions';
 
 
 import ChatMessage from "../components/ChatMessage";
-import BG from '../assets/images/BG.png';
 import InputBox from "../components/InputBox";
 
 const ChatRoomScreen = () => {
@@ -72,7 +71,7 @@ const ChatRoomScreen = () => {
   console.log(`messages in state: ${messages.length}`)
 
   return (
-    <ImageBackground style={{width: '100%', height: '100%'}} source={BG}>
+    <ImageBackground style={{width: '100%', height: '100%', backgroundColor: 'tan'}}>
       <FlatList
         data={messages}
         renderItem={({ item }) => <ChatMessage myId={myId} message={item} />}
