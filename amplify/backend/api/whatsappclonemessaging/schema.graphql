@@ -39,3 +39,6 @@ type Message
   user: User @connection(fields: ["userID"])
   chatRoom: ChatRoom @connection(fields: ["chatRoomID"])
 }
+
+
+
