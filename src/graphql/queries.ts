@@ -350,3 +350,28 @@ export const messagesByChatRoom = /* GraphQL */ `
     }
   }
 `;
+export const byQueueName = /* GraphQL */ `
+  query ByQueueName(
+    $name: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelQueueFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    byQueueName(
+      name: $name
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

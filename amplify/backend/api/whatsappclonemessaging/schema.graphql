@@ -40,7 +40,8 @@ type Message
   chatRoom: ChatRoom @connection(fields: ["chatRoomID"])
 }
 
-type Queue @model {
+type Queue @model @key(name: "byQueueName", fields: ["name"], queryField: "byQueueName")
+{
   id: ID!
   name: String!
 }

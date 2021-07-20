@@ -18,18 +18,19 @@ async function signOut() {
 }
 
 function queueQuery (){
-  //  let res = API.graphql(graphqlOperation({ query: queries.istQueues }));
    const res =  API.graphql(graphqlOperation(queries.listQueues)).then(data => {
      console.log(data)
+     
    }).catch(error => {
      console.log(error)
    });
-   const res2 =  API.graphql(graphqlOperation(queries.getQueue, { id: 'ac9cf051-1d1e-426e-ae2b-d95d2786e37c' })).then(data => {
+   const res2 =  API.graphql(graphqlOperation(queries.byQueueName, { name: "test3"} )).then(data => {
     console.log(data)
    }).catch(error => {
      console.log(error)
    });
 }
+
 queueQuery();
 
 export default function TabTwoScreen() {

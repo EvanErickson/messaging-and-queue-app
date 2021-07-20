@@ -1384,6 +1384,28 @@ export type MessagesByChatRoomQuery = {
   } | null,
 };
 
+export type ByQueueNameQueryVariables = {
+  name?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelQueueFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ByQueueNameQuery = {
+  byQueueName?:  {
+    __typename: "ModelQueueConnection",
+    items?:  Array< {
+      __typename: "Queue",
+      id: string,
+      name: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type OnCreateUserSubscription = {
   onCreateUser?:  {
     __typename: "User",
